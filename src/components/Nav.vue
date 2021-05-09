@@ -21,7 +21,7 @@
       >
         <ul class="navbar-nav">
           <li class="nav-item">
-            <router-link :to="{ name: 'Inicio' }" class="active nav-link"
+            <router-link :to="{ name: 'Inicio' }" class="nav-link"
               >Home</router-link
             >
           </li>

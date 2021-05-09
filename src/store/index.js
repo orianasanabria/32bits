@@ -5,7 +5,6 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    codeFilter: "",
     games: [{
         codigo: "0001",
         nombre: "Sekiro",
@@ -55,6 +54,8 @@ export default new Vuex.Store({
         destacado: true,
       },
     ],
+    codeFilter: "",
+    salesMade: [],
   },
   getters: {
     gamesTotal(state) {
@@ -62,11 +63,28 @@ export default new Vuex.Store({
       if (!games) return 0;
       const total = games.length;
       return total
+    },
+    totalSales(state) {
+      const sale = state.salesMade;
+      if (!sale) return 0
+      return sale
     }
   },
   mutations: {
     addCode(state, payload) {
       state.codeFilter = payload
+    },
+    sellGame: (state) => {
+      state.games.map((p) => {
+        if (p.stock > 0)
+          p.stock--
+      })
+    },
+    saveSale: (state, payload) => {
+      setTimeout(() => {
+        state.salesMade.push(payload)
+        alert("Venta exitosa")
+      }, 1000);
     }
   },
   actions: {},
